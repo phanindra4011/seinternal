@@ -3,7 +3,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-
   <groupId>SE</groupId>
   <artifactId>CMS</artifactId>
   <version>0.0.1-SNAPSHOT</version>
@@ -18,7 +17,6 @@
     <maven.compiler.source>8</maven.compiler.source>
     <maven.compiler.target>8</maven.compiler.target>
   </properties>
-
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -27,16 +25,68 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+  
+  <dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>group.id</groupId>
+            <artifactId>artifact-id</artifactId>
+            <version>desired-version</version>
+        </dependency>
+        <dependency>
+    		<groupId>some.group</groupId>
+    		<artifactId>some-artifact</artifactId>
+    		<version>1.0</version>
+    	<exclusions>
+        	<exclusion>
+            	<groupId>conflicting.group</groupId>
+            	<artifactId>conflicting-artifact</artifactId>
+        	</exclusion>
+    	</exclusions>
+		</dependency>
+		<dependency>
+    		<groupId>jsp</groupId>
+    		<artifactId>jsp</artifactId>
+    		<version>2.0.0</version>
+		</dependency>
+		<dependency>
+    		<groupId>web</groupId>
+    		<artifactId>jsp</artifactId>
+    		<version>2.0.0</version>
+		</dependency>
+		<dependency>
+    		<groupId>ja</groupId>
+    		<artifactId>jstl</artifactId>
+    		<version>1.2</version>
+		</dependency>
+    </dependencies>
+</dependencyManagement>
+
 
   <build>
     <finalName>CMS</finalName>
-    <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
+    <pluginManagement>
       <plugins>
+        <plugin>
+          <artifactId>maven-antrun-plugin</artifactId>
+          <version>3.1.0</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-assembly-plugin</artifactId>
+          <version>3.6.0</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-dependency-plugin</artifactId>
+          <version>3.6.1</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-release-plugin</artifactId>
+          <version>3.0.1</version>
+        </plugin>
         <plugin>
           <artifactId>maven-clean-plugin</artifactId>
           <version>3.4.0</version>
         </plugin>
-        <!-- see http://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_war_packaging -->
         <plugin>
           <artifactId>maven-resources-plugin</artifactId>
           <version>3.3.1</version>
@@ -64,4 +114,5 @@
       </plugins>
     </pluginManagement>
   </build>
+  
 </project>
